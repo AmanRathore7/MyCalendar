@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import MyCalendar from './components/Calendar';
 import './App.css';
+import { messaging } from './firebaseConfig';
 
 function App() {
+
+  useEffect(() => {
+    const requestPermission = async () => {
+        try {
+            const permission = await Notification.requestPermission();
+            if (permission === 'granted') {
+                console.log('Notification permission granted.');
+                const token = await messaging.getToken();
+
+                // Send the token to your server or save it in localStorage
+                localStorage.setItem("fcm_token",token);
+
+            } else {
+                console.error('Unable to get permission to notify.');
+            }
+        } catch (error) {
+            console.error('An error occurred while requesting permission', error);
+        }
+    };
+
+    requestPermission();
+
+    messaging.onMessage((payload) => {
+        console.log('Message received. ', payload);
+        // Customize notification here
+        const notificationTitle = payload.notification.title;
+        const notificationOptions = {
+            body: payload.notification.body,
+            icon: payload.notification.icon
+        };
+
+        new Notification(notificationTitle, notificationOptions);
+    });
+}, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MyCalendar />
     </div>
   );
 }

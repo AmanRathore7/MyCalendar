@@ -36,3 +36,50 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Remove underline from dates and day names */
+.fc .fc-daygrid-day-top,
+.fc .fc-daygrid-day-number,
+.fc .fc-daygrid-day-header {
+  text-decoration: none;
+}
+
+.fc-col-header-cell-cushion {
+  text-decoration: none;
+}
+
+.fc-h-event {
+  background-color: #f58787;
+  color: #333;
+}
+
+.fc-h-event .fc-event-title {
+  color: #000;
+  font-weight: bold;
+}
+
+/* Custom background color for event days */
+/* .fc-daygrid-day-frame ,.fc-scrollgrid-sync-inner{
+  background-color: #f4f4f4;
+} */
+
+.fc-daygrid-day-number{
+  font-weight: bolder;
+    font-size: 20px;
+}
+
+/* Custom border size for calendar cells */
+.fc-daygrid-day, .fc-daygrid-day-frame {
+  border: 1px solid #b1b1b1;
+    border-radius: 5px 10px;
+}
+
+.fc-day-today{
+  background-color: #ffc107 !important;
+}
+
+/* Custom background color for today's date */
+.today-cell {
+  background-color: #ffc107; /* Adjust the background color as needed */
+}
