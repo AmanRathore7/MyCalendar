@@ -7,8 +7,11 @@ To get started, you need to install the necessary libraries. Run the following c
 bash
 
 npm install
+
 npm install @fullcalendar/react @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction
+
 npm install react-bootstrap bootstrap
+
 npm install firebase
 
 
